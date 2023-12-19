@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.quiz.lesson03.mapper.RealEstateMapper">
+	<insert id="insertRealEstate"
+		parameterType="com.quiz.lesson03.domain.RealEstate">
+		INSERT INTO `real_estate`
+		(
+		`realtorId`
+		`address`
+		`area`
+		`type`
+		`price`
+		`rentPrice`
+		`createdAt`
+		`updatedAt`
+		)
+		VALUES
+		(
+		#{realtorId},
+		#{address},
+		#{area},
+		#{type},
+		#{price},
+		#{rentPrice},
+		NOW(),
+		NOW()
+		)
+	</insert>
+	<insert id="insertRealEstateASField" parameterType="map">
+	INSERT INTO `real_estate`
+		(
+		`realtorId`
+		`address`
+		`area`
+		`type`
+		`price`
+		`rentPrice`
+		`createdAt`
+		`updatedAt`
+		)
+		VALUES
+		(
+		#{realtorId},
+		#{address},
+		#{area},
+		#{type},
+		#{price},
+		#{rentPrice},
+		NOW(),
+		NOW()
+		)
+	</insert>
+
+</mapper>
