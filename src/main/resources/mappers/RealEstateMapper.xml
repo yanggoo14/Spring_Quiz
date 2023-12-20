@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.quiz.lesson03.mapper.RealEstateMapper">
+<mapper namespace="com.quiz.lesson03.mapper.RealEstateDAO">
 	<insert id="insertRealEstate"
 		parameterType="com.quiz.lesson03.domain.RealEstate">
 		INSERT INTO `real_estate`
@@ -53,4 +53,22 @@
 		)
 	</insert>
 
+	<update id="updateRealEstateById" parameterType="map">
+			UPDATE `real_estate`
+			SET
+			 `type`=#{type}
+			 , `price` = #{price}
+			 ,	`updatedAt` = NOW()
+			 WHERE
+			 `id` = #{id}
+	</update>
+	
+	<delete id="deleteRealEstateById" parameterType="int">
+		DELETE 
+		FROM
+			`real_estate`
+			WHERE
+			`id` = #{id}
+			
+	</delete>
 </mapper>
