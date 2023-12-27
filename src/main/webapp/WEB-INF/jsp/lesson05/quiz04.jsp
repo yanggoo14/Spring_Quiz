@@ -14,7 +14,9 @@
 <body>
 	<div class="container">
 		<h1>회원 정보 리스트</h1>
-		<table>
+		<img src="/img/logo.jpg">
+		
+		<table class="table">
 			<thead>
 				<tr>
 					<th>No</th>
@@ -26,15 +28,36 @@
 				</tr>
 			</thead>
 			<tbody>
+				<c:forEach items="${members }" var="member" varStatus="status">
 				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td>${status.count }</td>
+					<td>${member.name }</td>
+					<td>
+						<c:choose>
+							<c:when test="${fn:startsWith(member.phoneNumber, '010') }">
+								${member.phoneNumber }
+							</c:when>
+								<c:otherwise>
+									유효하지 않는 전화번호
+								</c:otherwise>
+						</c:choose>
+					</td>
+					<td>${fn:replace(member.nationality, '삼국시대', '삼국-')}</td>
+					<td>${member.email }</td>
+					<td>
+						<c:choose>
+							<c:when test="${fn:length(member.introduce) > 15}">
+							${fn:substring(member.introduce, 0 , 15) }...
+							</c:when>
+								<c:otherwise>
+									${member.introduce }
+								</c:otherwise>
+						</c:choose>
+					
+					
+					</td>
 				</tr>
-				
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>

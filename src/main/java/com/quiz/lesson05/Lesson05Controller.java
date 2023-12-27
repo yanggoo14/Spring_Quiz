@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.quiz.lesson05.domain.Member;
+
 @Controller
 @RequestMapping("/lesson05")
 public class Lesson05Controller {
@@ -49,8 +51,9 @@ public class Lesson05Controller {
 	
 	
 	}
+	@RequestMapping("/quiz04")
 	public String ex04(Model model) {
-		@RequestMapping("/quiz04")
+		
 		
 		List<Member> members = new ArrayList<>();
 
@@ -102,6 +105,7 @@ public class Lesson05Controller {
 		member.setIntroduce("내 수염 좀 멋있는 듯");
 		members.add(member);
 		
+		model.addAttribute("members",members);
 		return "lesson05/quiz04";
 	}
 }
