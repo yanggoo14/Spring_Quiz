@@ -11,43 +11,121 @@
 <link rel="stylesheet" type="text/css" href="/css/weather_history/weatherhistory.css">
 </head>
 <body>
-	<div id="wrap" class="container bg-info">
-		<section class="contents d-flex bg-secondary">
-			<div class="menu bg-danger col-2"></div>
-			<div class="input bg-primary col-10">
-				<div>
-				<h1>날씨 입력</h1>
+	<div id="wrap">
+		<div class="contents d-flex">
+			<%-- 메뉴 영역 --%>
+			<nav class="col-2">
+				<%-- 상단 로고 --%>
+				<div class="logo d-flex justify-content-center mt-3">
+					<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Emblem_of_the_Government_of_the_Republic_of_Korea.svg/800px-Emblem_of_the_Government_of_the_Republic_of_Korea.svg.png" width="25">
+					<span class="text-white font-weight-bold ml-2">기상청</span>
 				</div>
-				<div>
-					<form>
-					<div class="d-flex ml-4">
-					<label for="date">날짜</label>
-					<input type="text" id="date" name="date" class="form-control col-2">
-					<label for="weather" class="ml-3">날씨</label>
-					<select name="weather" class="col-2">
-						<option>최악</option>
-						<option>나쁨</option>
-						<option>보통</option>
-						<option>좋음</option>
-					</select>
+
+				<%-- 메뉴 --%>
+				<%-- flex-column: 세로 메뉴 --%>
+				<ul class="nav flex-column mt-4">
+					<li class="nav-item">
+						<a href="/weather-history/weather-list-view" class="nav-link menu-font">날씨</a>
+					</li>
+					<li class="nav-item">
+						<a href="/weather-history/add-weather-view" class="nav-link menu-font">날씨입력</a>
+					</li>
+					<li class="nav-item">
+						<a href="#" class="nav-link menu-font">테마날씨</a>
+					</li>
+					<li class="nav-item">
+						<a href="#" class="nav-link menu-font">관측 기후</a>
+					</li>
+				</ul>
+			</nav>
+
+			<%-- 날씨 추가 --%>
+			<section class="col-10 mt-3 ml-5">
+				<h3>날씨 입력</h3>
+				<form method="post" action="/weather-history/add-weather">
+					<div class="d-flex justify-content-between mt-5">
+						<div class="d-flex align-items-center">
+							<div class="input-label">날짜</div>
+							<input type="text" class="form-control" id="date" name="date">
+						</div>
+						<div class="d-flex align-items-center">
+							<div class="input-label">날씨</div>
+							<select class="form-control" name="weather">
+								<option>맑음</option>
+								<option>구름조금</option>
+								<option>흐림</option>
+								<option>비</option>
+							</select>
+						</div>
+
+						<div class="d-flex align-items-center">
+							<div class="input-label">미세먼지</div>
+							<select class="form-control" name="microDust">
+								<option>좋음</option>
+								<option>보통</option>
+								<option>나쁨</option>
+								<option>최악</option>
+							</select>
+						</div>
 					</div>
-					</form>
-				</div>
-				
+
+					<div class="d-flex justify-content-between mt-5">
+						<div class="d-flex align-items-center">
+							<div class="input-label">기온</div>
+							<div class="input-group">
+								<input type="text" class="form-control" name="temperatures">
+								<div class="input-group-append">
+									<span class="input-group-text">℃</span>
+								</div>
+							</div>
+						</div>
+						<div class="d-flex align-items-center">
+							<div class="input-label">강수량</div>
+							<div class="input-group">
+								<input type="text" class="form-control" name="precipitation">
+								<div class="input-group-append">
+									<span class="input-group-text">mm</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="d-flex align-items-center">
+							<div class="input-label">풍속</div>
+							<div class="input-group">
+								<input type="text" class="form-control" name="windSpeed">
+								<div class="input-group-append">
+									<span class="input-group-text">km/h</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="text-right mt-4 mb-5">
+						<input type="submit" class="btn btn-success" value="저장">
+					</div>
+				</form>
+			</section>
+		</div>
+		<footer class="d-flex align-items-center">
+			<div class="footer-logo ml-4">
+				<img class="foot-logo-image" src="https://www.weather.go.kr/w/resources/image/foot_logo.png" width="120">
 			</div>
-		</section>
-		
-		<footer class="bg-warning d-flex">
-			<div class="d-flex align-items-center">
-				<img src="/img/logo.jpg" width="150">
-			</div>
-			<div class="d-flex ml-3 align-items-center">
-				<small>
-				서울시 동작구 여의대방로 16길 61<br>
-				Copyright © marondal 2021
+			<div class="copyright ml-4">
+				<small class="text-secondary"> 
+					(07062) 서울시 동작구 여의대방로16길 61 <br>
+					Copyright@2023 KMA. All Rights RESERVED.
 				</small>
 			</div>
 		</footer>
 	</div>
+<script>
+	$(document).ready(function() {
+		
+		// 날짜 선택
+		$("#date").datepicker({
+			dateFormat: "yy-mm-dd"
+		});
+	});
+</script>
 </body>
 </html>

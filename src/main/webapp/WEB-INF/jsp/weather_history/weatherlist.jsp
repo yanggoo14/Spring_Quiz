@@ -17,7 +17,7 @@
 			<nav class="col-2">
 				<%-- 상단 로고 --%>
 				<div class="logo d-flex justify-content-center mt-3">
-					<img src="/img/logo.jpg" width="25">
+					<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Emblem_of_the_Government_of_the_Republic_of_Korea.svg/800px-Emblem_of_the_Government_of_the_Republic_of_Korea.svg.png" width="25">
 					<span class="text-white font-weight-bold ml-2">기상청</span>
 				</div>
 
@@ -42,6 +42,7 @@
 			<%-- 날씨 히스토리 --%>
 			<section class="weather-history col-10 mt-3 ml-5">
 				<h3>과거 날씨</h3>
+				
 				<table class="table text-center">
 					<thead>
 						<tr>
@@ -54,21 +55,39 @@
 						</tr>
 					</thead>
 					<tbody>
+						<c:forEach items="${weatherHistoryList}" var="history">
 						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>	
+							<td><fmt:formatDate value="${history.date}" pattern="yyyy년 M월 d일" /></td>
+							<td>
+								<c:choose>
+									<c:when test="${history.weather eq '맑음'}">
+										<img src="/img/sunny.jpg" alt="맑음">
+									</c:when>	
+									<c:when test="${history.weather eq '비'}">
+										<img src="/img/rainy.jpg" alt="비">
+									</c:when>
+									<c:when test="${history.weather eq '구름조금'}">
+										<img src="/img/partlyCloudy.jpg" alt="구름조금">
+									</c:when>
+									<c:when test="${history.weather eq '흐림'}">
+										<img src="/img/cloudy.jpg" alt="흐림">
+									</c:when>
+									<c:otherwise>${history.weather}</c:otherwise>
+								</c:choose>
+							</td>
+							<td>${history.temperatures}℃</td>
+							<td>${history.precipitation}mm</td>
+							<td>${history.microDust}</td>
+							<td>${history.windSpeed}km/h</td>
+						</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</section>
 		</div>
 		<footer class="d-flex align-items-center">
 			<div class="footer-logo ml-4">
-				<img class="foot-logo-image" src="/img/logo.jpg" width="120">
+				<img class="foot-logo-image" src="https://www.weather.go.kr/w/resources/image/foot_logo.png" width="120">
 			</div>
 			<div class="copyright ml-4">
 				<small class="text-secondary"> 
