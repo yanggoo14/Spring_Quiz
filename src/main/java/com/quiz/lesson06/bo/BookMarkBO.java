@@ -5,15 +5,24 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.quiz.lesson06.domain.BookMark;
-import com.quiz.lesson06.mapper.BookMarkMapper;
+import com.quiz.lesson06.domain.Bookmark;
+import com.quiz.lesson06.mapper.BookmarkMapper;
 
 @Service
-public class BookMarkBO {
-	
+public class BookmarkBO {
+
 	@Autowired
-	private BookMarkMapper Bookmarkmapper;
-	public List<BookMark> getBookMarkList(){
-		return Bookmarkmapper.selectBookMarkList();
+	private BookmarkMapper bookmarkMapper;
+	
+	// input:title, url      output:x
+	public void addBookmark(String name, String url) {
+		bookmarkMapper.insertBookmark(name, url);
+	}
+	
+	public List<Bookmark> getBookmarkList() {
+		return bookmarkMapper.selectBookmarkList();
+	}
+	public int deleteBookmarkById(int id) {
+		return bookmarkMapper.deleteBookmarkById(id);
 	}
 }
